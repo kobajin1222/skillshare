@@ -1,0 +1,13 @@
+<% if users.any? %>
+  <ul class="list-unstyled">
+    <% users.each do |user| %>
+        <div class="d-flex flex-row mx-auto mt-2 border border-dark rounded p-1 justify-content-between">
+        <img class="mr-2 rounded rounded-circle" src="<%= gravatar_url(user, { size: 50 }) %>" alt="">
+        <div class="d-flex align-items-center"><%= link_to user.name, user_path(user) %></div>
+        <div class="d-flex align-items-center">記事数 : 数 / フォロー : / 数 / フォロワー : 数</div>
+        <a href="#" class="btn btn-dark d-flex align-items-center m-1">フォローボタン</a>
+        </div>
+    <% end %>
+  </ul>
+  <%= paginate users %>
+<% end %>
