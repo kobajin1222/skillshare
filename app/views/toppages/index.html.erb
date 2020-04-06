@@ -1,27 +1,31 @@
-<div class="text-center mt-2">
-  <h1>Skill Shareへようこそ</h1>
-  <div class="row">
-    <div class="d-flex flex-row mx-auto mt-3">
-      <%= link_to '登録', signup_path, class: 'btn btn-dark' %>
-      <div class="d-flex align-items-center">または</div>
-      <a href="#" class="btn btn-light">ログイン</a>
+<% if logged_in? %>
+  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+<% else %>
+  <div class="text-center mt-2">
+    <h1>Skill Shareへようこそ</h1>
+    <div class="row">
+      <div class="d-flex flex-row mx-auto mt-3">
+        <%= link_to '登録', signup_path, class: 'btn btn-dark' %>
+        <div class="d-flex align-items-center">または</div>
+        <%= link_to 'ログイン', login_path, class: 'btn btn-light' %>
+      </div>
     </div>
-  </div>
-  <p class="mt-5">
-  「自分のスキルを多くの人に知ってもらいたい！」<br>
-  「あれこれ調べるのに複数のサイトを見るのが面倒！」<br>
-  「いろんなジャンルのことを調べたいな…。」
-  こんなこと、思ったことはありませんか？<br><br>
-  Skill Shareは、<br>
-  自分の技術、趣味、知識などを<br>
-  記事にして投稿し、<br>
-  他のユーザーと共有し、
-  スキルアップを目指すサービスです。<br><br>
-  『休憩時間など、ちょっとした時間に読む』<br>
-  『学んだことを自分なりに要約し公開する』<br>
-  『趣味の合う人を見つける』
-  などなど、使い方は自由！！<br><br>
-  さあ、あなたも自分のSkill（スキル）を<br>
-  みんなとShare（シェア）しよう！！！
-  </p>
+    <p class="mt-5">
+    「自分のスキルを多くの人に知ってもらいたい！」<br>
+    「あれこれ調べるのに複数のサイトを見るのが面倒！」<br>
+    「いろんなジャンルのことを調べたいな…。」
+    こんなこと、思ったことはありませんか？<br><br>
+    Skill Shareは、<br>
+    自分の技術、趣味、知識などを<br>
+    記事にして投稿し、<br>
+    他のユーザーと共有し、
+    スキルアップを目指すサービスです。<br><br>
+    『休憩時間など、ちょっとした時間に読む』<br>
+    『学んだことを自分なりに要約し公開する』<br>
+    『趣味の合う人を見つける』
+    などなど、使い方は自由！！<br><br>
+    さあ、あなたも自分のSkill（スキル）を<br>
+    みんなとShare（シェア）しよう！！！
+    </p>
 </div>
+<% end %>

@@ -1,7 +1,23 @@
 <header>
+<% if logged_in? %>
+  <nav class="navbar navbar-expand navbar-dark bg-dark">
+      <a href="/" class="navbar-brand mr-auto">Skill Share</a>
+      <div class="nav-item dropdown">
+        <a href="#" class="nav-link dropdown-toggle navbar-brand" data-toggle="dropdown">Menu</a>
+        <ul class="dropdown-menu dropdown-menu-right">
+          <%= link_to 'マイプロフィール', user_path(current_user), class: "dropdown-item" %>
+          <a class="dropdown-item" href="#">記事一覧</a>
+          <a class="dropdown-item" href="#">記事投稿</a>
+          <%= link_to 'ユーザー一覧', users_path, class: "dropdown-item" %>
+          <%= link_to 'ログアウト', logout_path, method: :delete, class: "dropdown-item" %>
+        </ul>
+      </div>
+  </nav>
+<% else %>
   <nav class="navbar navbar-expand navbar-dark bg-dark">
     <div class="navbar-collapse justify-content-center">
       <a href="/" class="navbar-brand nav-link">Skill Share</a>
     </div>
   </nav>
+<% end %>
 </header>
