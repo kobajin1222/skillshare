@@ -1,12 +1,15 @@
 <% if logged_in? %>
-  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+<div class="text-center mt-1">
+  <h1>フォロー中ユーザーの記事一覧</h1>
+</div>
+  <%= render "articles/articles", articles: @articles %>
 <% else %>
   <div class="text-center mt-2">
     <h1>Skill Shareへようこそ</h1>
     <div class="row">
       <div class="d-flex flex-row mx-auto mt-3">
         <%= link_to '登録', signup_path, class: 'btn btn-dark' %>
-        <div class="d-flex align-items-center">または</div>
+        <div class="d-flex align-items-center ml-2 mr-2">または</div>
         <%= link_to 'ログイン', login_path, class: 'btn btn-light' %>
       </div>
     </div>

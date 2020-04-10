@@ -1,0 +1,20 @@
+<div class="text-center">
+  <h1><%= @article.title %></h1>
+</div>
+<div class="d-flex flex-row justify-content-end">
+  <p class="mr-1">投稿者</p><%= link_to @article.user.name, user_path(@article.user) %>
+</div>
+<div class="mx-auto col-sm-11">
+  <%= safe_join(@article.content.split("\n"),tag(:br)) %>
+</div>
+<% if current_user == @article.user %>
+  <div class="d-flex flex-row justify-content-around mt-2 mb-3">
+    <%= link_to "この記事を編集", edit_article_path, class: "btn btn-dark" %>
+    <%= link_to "この記事を削除", @article, method: :delete, data: { confirm: "本当にこの記事を削除してもいいですか？" }, class: 'btn btn-dark' %>
+  </div>
+<% else %>
+  <div class="d-flex flex-row justify-content-around mt-2 mb-3">
+    <%= render "favorites/favorite_button",article: @article %>
+    <%= render 'relationships/follow_button', user: @user %>
+  </div>
+<% end %>

@@ -6,8 +6,8 @@
         <a href="#" class="nav-link dropdown-toggle navbar-brand" data-toggle="dropdown">Menu</a>
         <ul class="dropdown-menu dropdown-menu-right">
           <%= link_to 'マイプロフィール', user_path(current_user), class: "dropdown-item" %>
-          <a class="dropdown-item" href="#">記事一覧</a>
-          <a class="dropdown-item" href="#">記事投稿</a>
+          <%= link_to '記事一覧', articles_path, class: "dropdown-item" %>
+          <%= link_to '記事投稿', new_article_path, class: "dropdown-item" %>
           <%= link_to 'ユーザー一覧', users_path, class: "dropdown-item" %>
           <%= link_to 'ログアウト', logout_path, method: :delete, class: "dropdown-item" %>
         </ul>

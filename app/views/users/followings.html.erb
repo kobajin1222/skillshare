@@ -1,0 +1,8 @@
+<div class="text-center">
+  <p><%= link_to @user.name, user_path(@user) %>のフォロー / フォロワー一覧</p>
+</div>
+<ul class="nav nav-tabs nav-justified mb-3 mt-3">
+  <li class="nav-item"><%= link_to "フォロー", followings_user_path(@user), class: "nav-link active" %></li>
+  <li class="nav-item"><%= link_to "フォロワー", followers_user_path(@user),class: "nav-link" %></li>
+</ul>
+<%= render 'users', users: @followings %>

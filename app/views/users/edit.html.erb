@@ -1,2 +1,58 @@
-<h1>Users#edit</h1>
-<p>Find me in app/views/users/edit.html.erb</p>
+<div class="text-center">
+  <h1 class="mt-2">ユーザー情報編集ページ</h1>
+</div>
+
+<div class="container">
+
+    <%= form_with(model: @user, local: true) do |f| %>
+    <%= render 'layouts/error_messages', model: f.object %>
+      
+      <div class="form-group row">
+        <div class="col-sm-5 text-center col-form-label">
+        <%= f.label :name,'ユーザーネーム:' %>
+        </div>
+        <%= f.text_field :name, class: 'form-control col-sm-7' %>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-5 text-center col-form-label">
+        <%= f.label :email, 'メールアドレス:' %>
+        </div>
+        <%= f.email_field :email, class: 'form-control col-sm-7' %>
+      </div>
+      
+      <div class="form-group row">
+        <div class="col-sm-5 text-center col-form-label">
+        <%= f.label :self_introduction, '自己紹介文:' %>
+        </div>
+        <%= f.text_field :self_introduction, class: 'form-control col-sm-7' %>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-5 text-center col-form-label">
+        <%= f.label :password, 'パスワード:' %>
+        </div>
+        <%= f.password_field :password, class: 'form-control col-sm-7' %>
+      </div>
+
+      <div class="form-group row">
+        <div class="col-sm-5 text-center col-form-label">
+        <%= f.label :password_confirmation, 'パスワード(確認):' %>
+        </div>
+        <%= f.password_field :password_confirmation, class: 'form-control col-sm-7' %>
+      </div>
+      <div class="text-center">
+        <p>※ユーザーネームは2~10文字、パスワードは6~20文字<br>自己紹介文は50文字以内で空白でも可</p>
+        <%= f.submit '更新する', class: 'btn btn-dark' %>
+      </div>
+    <% end %>
+    <div class="row mt-2">
+      <div class="d-flex flex-row mx-auto">
+        <p>既に登録している方はコチラから<%= link_to 'ログイン', login_path %>
+      </div>
+    </div>
+  </div>
+  <div>
+    <u><a href="/" class="text-dark">＜戻る</a></u>
+  </div>
+</div>

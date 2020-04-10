@@ -1,0 +1,4 @@
+<div class="text-center">
+  <p><%= link_to @user.name, user_path(@user) %>のお気に入り一覧</p>
+</div>
+<%= render 'articles/articles', articles: @likes %>
