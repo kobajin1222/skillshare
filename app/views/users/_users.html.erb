@@ -1,5 +1,5 @@
 <% if users.any? %>
-  <ul class="list-unstyled">
+  <div class="list-unstyled">
     <% users.each do |user| %>
     <% @count_articles = user.articles.count %>
     <% @count_followings = user.followings.count %>
@@ -11,6 +11,6 @@
         <%= render 'relationships/follow_button', user: user %>
         </div>
     <% end %>
-  </ul>
+  </div>
   <%= paginate users %>
 <% end %>

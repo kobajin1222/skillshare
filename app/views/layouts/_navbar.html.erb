@@ -4,13 +4,13 @@
       <a href="/" class="navbar-brand mr-auto">Skill Share</a>
       <div class="nav-item dropdown">
         <a href="#" class="nav-link dropdown-toggle navbar-brand" data-toggle="dropdown">Menu</a>
-        <ul class="dropdown-menu dropdown-menu-right">
+        <div class="dropdown-menu dropdown-menu-right">
           <%= link_to 'マイプロフィール', user_path(current_user), class: "dropdown-item" %>
           <%= link_to '記事一覧', articles_path, class: "dropdown-item" %>
           <%= link_to '記事投稿', new_article_path, class: "dropdown-item" %>
           <%= link_to 'ユーザー一覧', users_path, class: "dropdown-item" %>
           <%= link_to 'ログアウト', logout_path, method: :delete, class: "dropdown-item" %>
-        </ul>
+        </div>
       </div>
   </nav>
 <% else %>

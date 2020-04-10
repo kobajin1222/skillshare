@@ -9,3 +9,6 @@ ja:
         self_introduction: 自己紹介文
         password: パスワード
         password_confirmation: 確認用パスワード
+      article:
+        title: タイトル
+        content: 内容
