@@ -24,9 +24,13 @@
 <div class="text-center">
 <%= render 'relationships/follow_button', user: @user %>
 </div>
-<div>
+<div class="mt-2">
   <p>投稿した記事</p>
 </div>
-<div>
-  <%= render "articles/articles", articles: @articles %>
-</div>
+<% if @user.articles.blank? %>
+  <p class="text-center">まだ投稿がありません</p>
+<% else %>
+  <div>
+    <%= render "articles/articles", articles: @articles %>
+  </div>
+<% end %>

@@ -1,12 +1,12 @@
 <div class="row d-flex flex-row justify-content-around mb-2">
   <% articles.each do |article| %>
-  <div class="border rounded border-dark mt-3 col-sm-5">
+  <div class="border rounded border-dark mt-3 col-5">
     <div class="d-flex flex-row justify-content-between">
       <div>
         <p><%= article.title %></p>
       </div>
       <div>
-        <img class="mr-2 rounded rounded-circle" src="<%= gravatar_url(article.user, { size: 50 }) %>" alt=""><%= link_to article.user.name, user_path(article.user) %>
+        <img class="mr-2 rounded rounded-circle" src="<%= gravatar_url(article.user, { size: 30 }) %>" alt=""><%= link_to article.user.name, user_path(article.user) %>
       </div>
     </div>
     <div>
@@ -18,4 +18,4 @@
   </div>
   <% end %>
 </div>
-<%= paginate articles, class: "mx-auto" %>
+<%= paginate articles%>
