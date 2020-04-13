@@ -1,8 +1,15 @@
 <% if logged_in? %>
+<% if @articles.blank? %>
+<div class="text-center mt-1">
+  <h1>フォロー中ユーザーの記事一覧</h1>
+  <p class="text-centermt-2">フォローしているユーザーの投稿はありません</p>
+</div>
+<% else %>
 <div class="text-center mt-1">
   <h1>フォロー中ユーザーの記事一覧</h1>
 </div>
   <%= render "articles/articles", articles: @articles %>
+<% end %>
 <% else %>
   <div class="text-center mt-2">
     <h1>Skill Shareへようこそ</h1>

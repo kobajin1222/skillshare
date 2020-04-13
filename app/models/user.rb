@@ -30,8 +30,9 @@ class User < ApplicationRecord
     self.followings.include?(other_user)
   end
   
-  def feed_articles
-    Article.where(user_id: self.following_ids + [self.id])
+  def follow_articles
+    #Article.where(user_id: self.following_ids + [self.id])
+    Article.where(user_id: self.following_ids)
   end
   
   def favorite(article)

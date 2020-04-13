@@ -5,7 +5,7 @@ class ToppagesController < ApplicationController
   def index
     if logged_in?
       @article = current_user.articles.build
-      @articles = current_user.feed_articles.order(id: :desc).page(params[:page]).per(4)
+      @articles = current_user.follow_articles.order(id: :desc).page(params[:page]).per(4)
     end
   end
 end
