@@ -1,5 +1,6 @@
-<div class="row justify-content-around mb-2">
+<div class="row justify-content-between mb-2">
   <% articles.each do |article| %>
+  <div class="d-block d-sm-none col-1"></div>
   <div class="border rounded border-dark mt-3 col-sm-5 col-10">
     <div class="d-flex flex-row justify-content-between">
       <div>
@@ -16,6 +17,7 @@
       <%= link_to "続きを読む", article %>
     </div>
   </div>
+  <div class="d-block d-sm-none col-1"></div>
   <% end %>
 </div>
 <%= paginate articles%>
