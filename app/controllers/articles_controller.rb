@@ -32,7 +32,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
-    @article = current_user.articles.build(article_params)
+    @article = Article.find_by(id: params[:id])
     if @article.update(article_params)
       flash[:success] = '記事を更新しました。'
       redirect_to @article
