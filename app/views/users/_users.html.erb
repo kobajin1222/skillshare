@@ -9,7 +9,7 @@
             <% if user.image.blank? %>
               <img src="/assets/no_image.png" class='hidden rounded rounded-circle border' width="30" height="30" />
             <% else %>
-              <%= image_tag user.image.url, :size => '30', class: "rounded rounded-circle" if user.image? %>
+              <%= image_tag user.image.to_s, :size => '30', class: "rounded rounded-circle" if user.image? %>
             <% end %>
             <div class="d-flex align-items-center ml-3 m-l-0 mr-0 justify-content-center"><%= link_to user.name, user_path(user) %></div>
           </div>

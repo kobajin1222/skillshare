@@ -7,7 +7,12 @@
         <p><%= article.title %></p>
       </div>
       <div>
-        <img class="mr-2 rounded rounded-circle" src="<%= gravatar_url(article.user, { size: 30 }) %>" alt=""><%= link_to article.user.name, user_path(article.user) %>
+        <% if article.user.image.blank? %>
+          <img src="/assets/no_image.png" class='hidden rounded rounded-circle border' width="30" height="30" />
+        <% else %>
+          <%= image_tag article.user.image.to_s, :size => '30', class: "rounded rounded-circle" if article.user.image? %>
+        <% end %>
+        <%= link_to article.user.name, user_path(article.user) %>
       </div>
     </div>
     <div>

@@ -6,7 +6,7 @@
   <% if @user.image.blank? %>
     <img src="/assets/no_image.png" class='hidden rounded rounded-circle border' width="200" height="200" />
   <% else %>
-    <%= image_tag @user.image.url, :size => '200', class: "rounded rounded-circle" if @user.image? %>
+    <%= image_tag @user.image.to_s, :size => '200', class: "rounded rounded-circle" if @user.image? %>
   <% end %>
 </div>
 <div>
