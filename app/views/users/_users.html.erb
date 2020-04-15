@@ -6,7 +6,11 @@
     <% @count_followers = user.followers.count %>
         <div class="mt-2 border border-dark rounded p-1 mx-auto row justify-content-center">
           <div class=" col-lg-2 p-0 d-flex flex-row justify-content-center">
-            <img class="mr-2 rounded rounded-circle" src="<%= gravatar_url(user, { size: 30 }) %>" alt="">
+            <% if user.image.blank? %>
+              <img src="/assets/no_image.png" class='hidden rounded rounded-circle border' width="30" height="30" />
+            <% else %>
+              <%= image_tag user.image.url, :size => '30', class: "rounded rounded-circle" if user.image? %>
+            <% end %>
             <div class="d-flex align-items-center ml-3 m-l-0 mr-0 justify-content-center"><%= link_to user.name, user_path(user) %></div>
           </div>
           <div class="d-flex align-items-center justify-content-center mt-2 mb-2 col-lg-5">記事数 :<div class="ml-1 mr-1"><%= @count_articles %></div>/ フォロー :<div class="ml-1 mr-1"><%= @count_followings %></div>/ フォロワー :<div class="ml-1 mr-1 align-items-center"><%= @count_followers %></div></div>

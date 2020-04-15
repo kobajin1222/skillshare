@@ -5,4 +5,8 @@
   <li class="nav-item"><%= link_to "フォロー", followings_user_path(@user), class: "nav-link active" %></li>
   <li class="nav-item"><%= link_to "フォロワー", followers_user_path(@user),class: "nav-link" %></li>
 </ul>
-<%= render 'users', users: @followings %>
+<% if @followings.blank? %>
+  <p class="text-center">フォローしているユーザーはいません</p>
+<% else %>
+  <%= render 'users', users: @followings %>
+<% end %>

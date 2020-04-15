@@ -7,6 +7,8 @@ class User < ApplicationRecord
   has_secure_password
   validates :password, presence: true, length: { in: 6..20 }
   
+  mount_uploader :image, ImageUploader
+  
   has_many :articles
   has_many :relationships
   has_many :followings, through: :relationships, source: :follow

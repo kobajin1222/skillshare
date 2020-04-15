@@ -3,7 +3,11 @@
 </div>
 <div class="d-flex flex-row justify-content-around align-items-center">
 <div>
-  <img class="rounded img-fluid rounded-circle" src="<%= gravatar_url(@user, { size: 150 }) %>" alt="">
+  <% if @user.image.blank? %>
+    <img src="/assets/no_image.png" class='hidden rounded rounded-circle border' width="200" height="200" />
+  <% else %>
+    <%= image_tag @user.image.url, :size => '200', class: "rounded rounded-circle" if @user.image? %>
+  <% end %>
 </div>
 <div>
   <% if @user.self_introduction.blank? %>

@@ -1,4 +1,8 @@
 <div class="text-center">
   <p><%= link_to @user.name, user_path(@user) %>のお気に入り一覧</p>
 </div>
-<%= render 'articles/articles', articles: @likes %>
+ <% if @likes.blank? %>
+  <p class="text-center">お気に入りしている投稿はありません</p>
+<% else %>
+  <%= render 'articles/articles', articles: @likes %>
+<% end %>
