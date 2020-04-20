@@ -7,11 +7,12 @@
         <p><%= article.title %></p>
       </div>
       <div>
-        <% if article.user.image.blank? %>
+        <%#ユーザー画像設定用%>
+        <%# if article.user.image.blank? %>
           <img src="/assets/no_image.png" class='hidden rounded rounded-circle border' width="30" height="30" />
-        <% else %>
-          <%= image_tag article.user.image.to_s, :size => '30', class: "rounded rounded-circle" if article.user.image? %>
-        <% end %>
+        <%# else %>
+          <%#= image_tag article.user.image.to_s, :size => '30', class: "rounded rounded-circle" if article.user.image? %>
+        <%# end %>
         <%= link_to article.user.name, user_path(article.user) %>
       </div>
     </div>

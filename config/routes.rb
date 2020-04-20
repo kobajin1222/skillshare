@@ -18,4 +18,8 @@ Rails.application.routes.draw do
   resources :articles
   resources :relationships, only: [:create, :destroy]
   resources :favorites, only: [:create, :destroy]
+  
+  get '/articles/hashtag/:name', to: "articles#hashtag"
+  
+  resources :hashtags, only: [:index]
 end

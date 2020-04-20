@@ -8,6 +8,7 @@
           <%= link_to 'マイプロフィール', user_path(current_user), class: "dropdown-item" %>
           <%= link_to '記事一覧', articles_path, class: "dropdown-item" %>
           <%= link_to '記事投稿', new_article_path, class: "dropdown-item" %>
+          <%= link_to 'ハッシュタグ一覧', hashtags_path, class: "dropdown-item" %>
           <%= link_to 'ユーザー一覧', users_path, class: "dropdown-item" %>
           <%= link_to 'ログアウト', logout_path, method: :delete, class: "dropdown-item" %>
         </div>

@@ -50,6 +50,11 @@ class ArticlesController < ApplicationController
     redirect_to @user
   end
   
+  def hashtag
+    @hashtag = Hashtag.find_by(hashname: params[:name])
+    @articles = @hashtag.articles.page(params[:page]).per(4)
+  end
+  
   private
 
   def article_params

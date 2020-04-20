@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_14_090312) do
+ActiveRecord::Schema.define(version: 2020_04_20_091842) do
 
   create_table "articles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -21,6 +21,14 @@ ActiveRecord::Schema.define(version: 2020_04_14_090312) do
     t.index ["user_id"], name: "index_articles_on_user_id"
   end
 
+  create_table "articles_hashtags", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "article_id"
+    t.bigint "hashtag_id"
+    t.index ["article_id", "hashtag_id"], name: "index_articles_hashtags_on_article_id_and_hashtag_id", unique: true
+    t.index ["article_id"], name: "index_articles_hashtags_on_article_id"
+    t.index ["hashtag_id"], name: "index_articles_hashtags_on_hashtag_id"
+  end
+
   create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "user_id"
     t.bigint "article_id"
@@ -29,6 +37,13 @@ ActiveRecord::Schema.define(version: 2020_04_14_090312) do
     t.index ["article_id"], name: "index_favorites_on_article_id"
     t.index ["user_id", "article_id"], name: "index_favorites_on_user_id_and_article_id", unique: true
     t.index ["user_id"], name: "index_favorites_on_user_id"
+  end
+
+  create_table "hashtags", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "hashname"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["hashname"], name: "index_hashtags_on_hashname", unique: true
   end
 
   create_table "relationships", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -52,6 +67,8 @@ ActiveRecord::Schema.define(version: 2020_04_14_090312) do
   end
 
   add_foreign_key "articles", "users"
+  add_foreign_key "articles_hashtags", "articles"
+  add_foreign_key "articles_hashtags", "hashtags"
   add_foreign_key "favorites", "articles"
   add_foreign_key "favorites", "users"
   add_foreign_key "relationships", "users"

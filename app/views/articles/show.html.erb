@@ -6,7 +6,8 @@
   <p class="mr-1">投稿者</p><%= link_to @article.user.name, user_path(@article.user) %>
 </div>
 <div class="mx-auto">
-  <%= safe_join(@article.content.split("\n"),tag(:br)) %>
+  <% content = safe_join(@article.content.split("\n"),tag(:br)) %>
+  <%= render_with_hashtags(content) %>
 </div>
 <% if current_user == @article.user %>
   <div class="justify-content-around mt-2 mb-3 row">
