@@ -51,7 +51,7 @@ class ArticlesController < ApplicationController
   end
   
   def hashtag
-    @hashtag = Hashtag.find_by(hashname: params[:name])
+    @hashtag = Hashtag.find_by(hashname: params[:hashname])
     @articles = @hashtag.articles.page(params[:page]).per(4)
   end
   

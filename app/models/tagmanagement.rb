@@ -1,4 +1,4 @@
-class ArticlesHashtag < ApplicationRecord
+class Tagmanagement < ApplicationRecord
   belongs_to :article
   belongs_to :hashtag
 end

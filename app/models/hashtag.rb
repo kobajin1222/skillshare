@@ -1,4 +1,5 @@
 class Hashtag < ApplicationRecord
-  has_and_belongs_to_many :articles
+  has_many :tagmanagements, dependent: :destroy
+  has_many :articles, through: :tagmanagements, source: :article
   validates :hashname, presence: true, length: { maximum:99 }
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_20_091842) do
+ActiveRecord::Schema.define(version: 2020_04_21_121127) do
 
   create_table "articles", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "title"
@@ -19,14 +19,6 @@ ActiveRecord::Schema.define(version: 2020_04_20_091842) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_articles_on_user_id"
-  end
-
-  create_table "articles_hashtags", id: false, options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.bigint "article_id"
-    t.bigint "hashtag_id"
-    t.index ["article_id", "hashtag_id"], name: "index_articles_hashtags_on_article_id_and_hashtag_id", unique: true
-    t.index ["article_id"], name: "index_articles_hashtags_on_article_id"
-    t.index ["hashtag_id"], name: "index_articles_hashtags_on_hashtag_id"
   end
 
   create_table "favorites", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -56,6 +48,14 @@ ActiveRecord::Schema.define(version: 2020_04_20_091842) do
     t.index ["user_id"], name: "index_relationships_on_user_id"
   end
 
+  create_table "tagmanagements", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "article_id"
+    t.bigint "hashtag_id"
+    t.index ["article_id", "hashtag_id"], name: "index_tagmanagements_on_article_id_and_hashtag_id", unique: true
+    t.index ["article_id"], name: "index_tagmanagements_on_article_id"
+    t.index ["hashtag_id"], name: "index_tagmanagements_on_hashtag_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name"
     t.string "email"
@@ -67,10 +67,10 @@ ActiveRecord::Schema.define(version: 2020_04_20_091842) do
   end
 
   add_foreign_key "articles", "users"
-  add_foreign_key "articles_hashtags", "articles"
-  add_foreign_key "articles_hashtags", "hashtags"
   add_foreign_key "favorites", "articles"
   add_foreign_key "favorites", "users"
   add_foreign_key "relationships", "users"
   add_foreign_key "relationships", "users", column: "follow_id"
+  add_foreign_key "tagmanagements", "articles"
+  add_foreign_key "tagmanagements", "hashtags"
 end
