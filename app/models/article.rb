@@ -20,12 +20,13 @@ class Article < ApplicationRecord
       Tagmanagement.find_or_create_by(article_id: article.id,hashtag_id: tag.id)
     end
   end
+  
   #記事更新前のデータを代入
   before_update do
     @before_article = Article.find_by(id: self.id)
   end
 
-  after_update do 
+  after_update do
     article = Article.find_by(id: self.id)
     #記事idを持った中間テーブルカラムを全件削除する
     Tagmanagement.where(article_id: article.id).destroy_all
