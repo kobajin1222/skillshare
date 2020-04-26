@@ -1,8 +1,8 @@
 <div class="text-center">
   <h1>登録ユーザー一覧</h1>
   <%= form_tag(search_users_path,:method => 'get') do %>
-  <%= text_field_tag :search %>
-  <%= submit_tag '検索' %>
+  <%= text_field_tag :search,"", placeholder: "ユーザーを検索",size: "30",maxlength: "20",required: true %>
+  <%= button_tag '<i class="fas fa-search"></i>'.html_safe, type: 'submit' %>
   <% end %>
 </div>
 <%= render "users", users: @users %>
