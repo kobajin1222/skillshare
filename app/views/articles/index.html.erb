@@ -1,4 +1,12 @@
+<% if @articles.blank? %>
+<p class="text-center">まだ投稿はありません</p>
+<% else %>
 <div class="text-center mt-1">
   <h1>全ユーザーの記事一覧</h1>
+  <%= form_tag(search_articles_path,:method => 'get') do %>
+  <%= text_field_tag :search %>
+  <%= submit_tag '検索' %>
+  <% end %>
 </div>
 <%= render "articles", articles: @articles %>
+<% end %>

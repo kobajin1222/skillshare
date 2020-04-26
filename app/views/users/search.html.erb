@@ -1,0 +1,13 @@
+<div class="text-center mt-1">
+  <h1>『<%= @search_word %>』の検索結果</h1>
+  <p><%= @users_count %>件</p>
+  <%= form_tag(search_users_path,:method => 'get') do %>
+  <%= text_field_tag :search,@search_word %>
+  <%= submit_tag '検索' %>
+  <% end %>
+</div>
+  <% if @users.blank? %>
+  <p class="text-center mt-5">ユーザーが見つかりませんでした</p>
+  <% else %>
+  <%= render 'users', users: @users %>
+  <% end %>

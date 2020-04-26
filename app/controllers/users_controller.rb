@@ -64,6 +64,12 @@ class UsersController < ApplicationController
     counts(@user)
   end
   
+  def search
+    @search_word = params[:search]
+    @users = User.where("(name like ?) ","%#{@search_word}%").page(params[:page]).per(5)
+    @users_count = User.where("(name like ?) ","%#{@search_word}%").count
+  end
+  
   private
 
   def user_params

@@ -55,6 +55,12 @@ class ArticlesController < ApplicationController
     @articles = @hashtag.articles.page(params[:page]).per(4)
   end
   
+  def search
+    @search_word = params[:search]
+    @articles = Article.where("(title like ?) OR (content like ?)", "%#{@search_word}%", "%#{@search_word}%").page(params[:page]).per(4)
+    @articles_count = Article.where("(title like ?) OR (content like ?)", "%#{@search_word}%", "%#{@search_word}%").count
+  end
+  
   private
 
   def article_params

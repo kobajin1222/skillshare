@@ -11,7 +11,7 @@ class Article < ApplicationRecord
   #記事(article)保存後に処理
   after_create do
     article = Article.find_by(id: self.id)
-    #保存した記事のcontentの中から#の後に続くハッシュタグをスキャンして配列に入れる
+    #保存した記事のcontentの中から#の後に続くハッシュタグをスキャンして配列に入れる]
     hashtags  = self.content.scan(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/)
     hashtags.uniq.map do |hashtag|
       #ハッシュタグを'#'を外して保存

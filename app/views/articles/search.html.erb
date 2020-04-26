@@ -1,0 +1,13 @@
+<div class="text-center mt-1">
+  <h1>『<%= @search_word %>』の検索結果</h1>
+  <p><%= @articles_count %>件</p>
+  <%= form_tag(search_articles_path,:method => 'get') do %>
+  <%= text_field_tag :search,@search_word %>
+  <%= submit_tag '検索' %>
+  <% end %>
+</div>
+  <% if @articles.blank? %>
+  <p class="text-center mt-5">記事が見つかりませんでした</p>
+  <% else %>
+  <%= render "articles", articles: @articles %>
+  <% end %>

@@ -7,5 +7,6 @@
 <% else %>
   <% @hashtags.each do |hashtag| %>
   <%= link_to "#"+hashtag.hashname, "/articles/hashtag/"+hashtag.hashname, class: "btn btn-dark"  %>
+  <%= hashtag.articles.count %>件の記事
   <% end %>
 <% end %>
