@@ -21,7 +21,6 @@ class ArticlesController < ApplicationController
       flash[:success] = '記事を投稿しました。'
       redirect_to @article
     else
-      @articles = current_user.feed_articles.order(id: :desc).page(params[:page])
       flash.now[:danger] = '記事の投稿に失敗しました。'
       render :new
     end
@@ -61,10 +60,15 @@ class ArticlesController < ApplicationController
     @articles_count = Article.where("(title like ?) OR (content like ?)", "%#{@search_word}%", "%#{@search_word}%").count
   end
   
+  def category
+    @articles = Article.where(category: params[:category]).page(params[:page]).per(4)
+    @category = params[:category]
+  end
+  
   private
 
   def article_params
-    params.require(:article).permit(:title,:content)
+    params.require(:article).permit(:title,:content,:category)
   end
   
   def correct_user

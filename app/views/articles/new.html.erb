@@ -19,6 +19,20 @@
     </div>
     <%= f.text_area :content, class: 'form-control col-sm-7', rows: 5 %>
   </div>
+  
+  <div class="form-group row">
+    <div class="col-sm-5 text-center col-form-label">
+    <%= f.label :category, 'カテゴリー:' %>
+    </div>
+    <% category_list = [] %>
+    <% $category_list.each do |category| %>
+      <% category_select = [category,category] %>
+      <% category_list << category_select %>
+    <% end %>
+    
+    <%= f.select :category,category_list, include_blank: "選択して下さい" %>
+  </div>
+  
   <div class="text-center">
     <p>※タイトルは20文字以内<br>
        内容は2000字以内
