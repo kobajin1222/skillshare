@@ -56,13 +56,23 @@ class ArticlesController < ApplicationController
   
   def search
     @search_word = params[:search]
-    @articles = Article.where("(title like ?) OR (content like ?)", "%#{@search_word}%", "%#{@search_word}%").page(params[:page]).per(4)
-    @articles_count = Article.where("(title like ?) OR (content like ?)", "%#{@search_word}%", "%#{@search_word}%").count
+    @search_category = params[:category]
+
+    #@articles = Article.where("(title like ?) OR (content like ?)", "%#{@search_word}%", "%#{@search_word}%").where(category: @search_category).page(params[:page]).per(4)
+    
+    if @search_category.blank?
+      @articles = Article.where("(title like ?) OR (content like ?)", "%#{@search_word}%", "%#{@search_word}%").page(params[:page]).per(4)
+      @articles_count = Article.where("(title like ?) OR (content like ?)", "%#{@search_word}%", "%#{@search_word}%").count
+    else
+      @articles = Article.where("(title like ?) OR (content like ?)", "%#{@search_word}%", "%#{@search_word}%").where(category: @search_category).page(params[:page]).per(4)
+      @articles_count = Article.where("(title like ?) OR (content like ?)", "%#{@search_word}%", "%#{@search_word}%").where(category: @search_category).count
+    end
+    
   end
   
   def category
-    @articles = Article.where(category: params[:category]).page(params[:page]).per(4)
     @category = params[:category]
+    @articles = Article.where(category: @category).page(params[:page]).per(4)
   end
   
   private

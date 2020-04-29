@@ -1,9 +1,20 @@
 <div class="text-center mt-1">
-  <h1>『<%= @search_word %>』の検索結果</h1>
+  <h1>検索結果</h1>
+  
+  <% if @search_word.blank? %>
+  <% @search_word = "指定なし" %>
+  <% end %>
+  
+  <p>検索ワード：<%= @search_word %></p>
   <p><%= @users_count %>件</p>
-  <%= form_tag(search_users_path,:method => 'get') do %>
-  <%= text_field_tag :search,@search_word,size: "30",maxlength: "20",required: true %>
-  <%= button_tag '<i class="fas fa-search"></i>'.html_safe, type: 'submit' %>
+  
+  <% if @search_word == "指定なし" %>
+  <% @search_word = "" %>
+  <% end %>
+  
+  <%= form_with(url: search_users_path, local: true, method: :get) do |f| %>
+  <%= text_field_tag :search,@search_word, placeholder: "検索ワードを入力",size: "30",maxlength: "20" %>
+  <%= f.submit 'ユーザーを検索', class: 'btn btn-light' %>
   <% end %>
 </div>
   <% if @users.blank? %>
