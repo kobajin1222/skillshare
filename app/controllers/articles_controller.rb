@@ -57,8 +57,6 @@ class ArticlesController < ApplicationController
   def search
     @search_word = params[:search]
     @search_category = params[:category]
-
-    #@articles = Article.where("(title like ?) OR (content like ?)", "%#{@search_word}%", "%#{@search_word}%").where(category: @search_category).page(params[:page]).per(4)
     
     if @search_category.blank?
       @articles = Article.where("(title like ?) OR (content like ?)", "%#{@search_word}%", "%#{@search_word}%").page(params[:page]).per(4)
@@ -67,6 +65,13 @@ class ArticlesController < ApplicationController
       @articles = Article.where("(title like ?) OR (content like ?)", "%#{@search_word}%", "%#{@search_word}%").where(category: @search_category).page(params[:page]).per(4)
       @articles_count = Article.where("(title like ?) OR (content like ?)", "%#{@search_word}%", "%#{@search_word}%").where(category: @search_category).count
     end
+    
+    if @search_word.blank?
+      @search_word = "指定なし" 
+    end
+    if @search_category.blank? 
+      @search_category = "指定なし" 
+    end 
     
   end
   

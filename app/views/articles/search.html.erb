@@ -1,13 +1,5 @@
 <div class="text-center mt-1">
   <h1>検索結果</h1>
-  
-  <% if @search_word.blank? %>
-  <% @search_word = "指定なし" %>
-  <% end %>
-  <% if @search_category.blank? %>
-  <% @search_category = "指定なし" %>
-  <% end %>
-  
   <p>検索ワード：<%= @search_word %></p>
   <p>カテゴリー：<%=  @search_category %></p>
   <p><%= @articles_count %>件</p>

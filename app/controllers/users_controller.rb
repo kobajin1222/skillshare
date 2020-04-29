@@ -68,6 +68,11 @@ class UsersController < ApplicationController
     @search_word = params[:search]
     @users = User.where("(name like ?) ","%#{@search_word}%").page(params[:page]).per(5)
     @users_count = User.where("(name like ?) ","%#{@search_word}%").count
+    
+    if @search_word.blank?
+      @search_word = "指定なし"
+    end
+    
   end
   
   private
