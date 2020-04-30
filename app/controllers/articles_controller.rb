@@ -1,18 +1,17 @@
 class ArticlesController < ApplicationController
   before_action :correct_user, only: [:edit, :update, :destroy]
+  before_action :set_article, only: [:index, :new]
+  before_action :article_find, only: [:show, :edit, :update]
+  before_action :set_user, only: [:show, :destroy]
   
   def index
-      @article = current_user.articles.build
       @articles = Article.order(id: :desc).page(params[:page]).per(4)
   end
 
   def show
-    @article = Article.find_by(id: params[:id])
-    @user = @article.user
   end
 
   def new
-    @article = current_user.articles.build
   end
 
   def create
@@ -27,11 +26,9 @@ class ArticlesController < ApplicationController
   end
 
   def edit
-    @article = Article.find_by(id: params[:id])
   end
 
   def update
-    @article = Article.find_by(id: params[:id])
     if @article.update(article_params)
       flash[:success] = '記事を更新しました。'
       redirect_to @article
@@ -43,7 +40,6 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @user = @article.user
     @article.destroy
     flash[:success] = '記事を削除しました。'
     redirect_to @user
@@ -81,6 +77,18 @@ class ArticlesController < ApplicationController
   end
   
   private
+  
+  def set_article
+    @article = current_user.articles.build
+  end
+  
+  def set_user
+    @user = @article.user
+  end
+  
+  def article_find
+    @article = Article.find_by(id: params[:id])
+  end
 
   def article_params
     params.require(:article).permit(:title,:content,:category)

@@ -1,8 +1,7 @@
 <div class="text-center">
   <h1>登録ユーザー一覧</h1>
-  <%= form_with(url: search_users_path, local: true, method: :get) do |f| %>
-  <%= text_field_tag :search,"", placeholder: "検索ワードを入力",size: "30",maxlength: "20" %>
-  <%= f.submit 'ユーザーを検索', class: 'btn btn-light' %>
-  <% end %>
+  
+  <%= render "search_form" %>
+  
 </div>
 <%= render "users", users: @users %>

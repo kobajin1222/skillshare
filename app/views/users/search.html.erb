@@ -7,10 +7,8 @@
   <% @search_word = "" %>
   <% end %>
   
-  <%= form_with(url: search_users_path, local: true, method: :get) do |f| %>
-  <%= text_field_tag :search,@search_word, placeholder: "検索ワードを入力",size: "30",maxlength: "20" %>
-  <%= f.submit 'ユーザーを検索', class: 'btn btn-light' %>
-  <% end %>
+  <%= render "search_form" %>
+  
 </div>
   <% if @users.blank? %>
   <p class="text-center mt-5">ユーザーが見つかりませんでした</p>

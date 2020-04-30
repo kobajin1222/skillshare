@@ -1,0 +1,8 @@
+<%= form_with(url: search_articles_path, local: true, method: :get) do |f| %>
+  <%= content_tag :div, class: "form-group row justify-content-center" do %>
+    <%#= f.text_field :search, placeholder: "検索ワードを入力", size: "30",maxlength: "20", class: "col-form-label mr-2" %>
+    <%= text_field_tag :search,@search_word, placeholder: "検索ワードを入力", size: "30",maxlength: "20", class: "col-form-label mr-2" %>
+    <%= f.select :category, helper_category_search, include_blank: "カテゴリーを指定しない", class: "form-control" %>
+    <%= f.submit '記事を検索', class: 'btn btn-dark ml-2' %>
+  <% end %>
+<% end %>

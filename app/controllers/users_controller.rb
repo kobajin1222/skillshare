@@ -2,13 +2,13 @@ class UsersController < ApplicationController
   
   skip_before_action :require_user_logged_in, only: [:new, :create]
   before_action :correct_user, only: [:edit, :update]
+  before_action :set_user, only: [:show, :edit, :update, :followings, :followers, :likes]
   
   def index
     @users = User.order(id: :desc).page(params[:page]).per(5)
   end
   
   def show
-    @user = User.find(params[:id])
     @articles = @user.articles.order(id: :desc).page(params[:page]).per(4)
     counts(@user)
   end
@@ -31,12 +31,9 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
-
     if @user.update(user_params)
       flash[:success] = 'ユーザー情報を変更しました。'
       redirect_to @user
@@ -47,19 +44,16 @@ class UsersController < ApplicationController
   end
   
   def followings
-    @user = User.find(params[:id])
     @followings = @user.followings.page(params[:page]).per(5)
     counts(@user)
   end
   
   def followers
-    @user = User.find(params[:id])
     @followers = @user.followers.page(params[:page]).per(5)
     counts(@user)
   end
   
   def likes
-    @user = User.find(params[:id])
     @likes = @user.likes.page(params[:page]).per(4)
     counts(@user)
   end
@@ -76,6 +70,10 @@ class UsersController < ApplicationController
   end
   
   private
+  
+  def set_user
+    @user = User.find(params[:id])
+  end
 
   def user_params
     params.require(:user).permit(:name, :image, :remove_image, :email, :self_introduction, :password, :password_confirmation)

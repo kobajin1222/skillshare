@@ -24,13 +24,7 @@
     <div class="col-sm-5 text-center col-form-label">
     <%= f.label :category, 'カテゴリー:' %>
     </div>
-    <% category_list = [] %>
-    <% $category_list.each do |category| %>
-      <% category_select = [category,category] %>
-      <% category_list << category_select %>
-    <% end %>
-    
-    <%= f.select :category,category_list, include_blank: "選択して下さい" %>
+    <%= f.select :category,helper_category_save, include_blank: "選択して下さい" %>
   </div>
   
   <div class="text-center">

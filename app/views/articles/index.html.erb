@@ -4,13 +4,8 @@
 <div class="text-center mt-1">
   <h1>全ユーザーの記事一覧</h1>
   
-  <%= form_with(url: search_articles_path, local: true, method: :get) do |f| %>
-  <div class="form-group row justify-content-center">
-  <%= f.text_field :search, placeholder: "検索ワードを入力", size: "30",maxlength: "20", class: "col-form-label mr-2" %>
-  <%= f.select :category,$category_list, include_blank: "カテゴリーを指定しない", class: "form-control" %>
-  <%= f.submit '記事を検索', class: 'btn btn-dark ml-2' %>
-  </div>
-  <% end %>
+  <%= render "search_form" %>
+
 </div>
 <%= render "articles", articles: @articles %>
 <% end %>
