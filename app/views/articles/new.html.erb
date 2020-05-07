@@ -22,9 +22,9 @@
   
   <div class="form-group row">
     <div class="col-sm-5 text-center col-form-label">
-    <%= f.label :category, 'カテゴリー:' %>
+    <%= f.label :category_id, 'カテゴリー:' %>
     </div>
-    <%= f.select :category,helper_category_save, include_blank: "選択して下さい" %>
+    <%= f.collection_select  :category_id, Category.all, :id, :name, include_blank: "選択して下さい" %>
   </div>
   
   <div class="text-center">

@@ -50,30 +50,45 @@ class ArticlesController < ApplicationController
     @articles = @hashtag.articles.page(params[:page]).per(4)
   end
   
+  # def search
+  #   @search_word = params[:search]
+  #   @search_category = params[:category]
+    
+  #   if @search_category.blank?
+  #     @articles = Article.where("(title like ?) OR (content like ?)", "%#{@search_word}%", "%#{@search_word}%").page(params[:page]).per(4)
+  #     @articles_count = Article.where("(title like ?) OR (content like ?)", "%#{@search_word}%", "%#{@search_word}%").count
+  #   else
+  #     @articles = Article.where("(title like ?) OR (content like ?)", "%#{@search_word}%", "%#{@search_word}%").where(category: @search_category).page(params[:page]).per(4)
+  #     @articles_count = Article.where("(title like ?) OR (content like ?)", "%#{@search_word}%", "%#{@search_word}%").where(category: @search_category).count
+  #   end
+    
+  #   if @search_word.blank?
+  #     @search_word = "指定なし" 
+  #   end
+  #   if @search_category.blank? 
+  #     @search_category = "指定なし" 
+  #   end 
+  # end
   def search
     @search_word = params[:search]
-    @search_category = params[:category]
     
-    if @search_category.blank?
+    if params[:category_id].blank?
       @articles = Article.where("(title like ?) OR (content like ?)", "%#{@search_word}%", "%#{@search_word}%").page(params[:page]).per(4)
       @articles_count = Article.where("(title like ?) OR (content like ?)", "%#{@search_word}%", "%#{@search_word}%").count
     else
-      @articles = Article.where("(title like ?) OR (content like ?)", "%#{@search_word}%", "%#{@search_word}%").where(category: @search_category).page(params[:page]).per(4)
-      @articles_count = Article.where("(title like ?) OR (content like ?)", "%#{@search_word}%", "%#{@search_word}%").where(category: @search_category).count
+      @category = Category.find(params[:category_id])
+      @articles = Article.where("(title like ?) OR (content like ?)", "%#{@search_word}%", "%#{@search_word}%").where(category_id: @category.id).page(params[:page]).per(4)
+      @articles_count = Article.where("(title like ?) OR (content like ?)", "%#{@search_word}%", "%#{@search_word}%").where(category_id: @category.id).count
     end
     
     if @search_word.blank?
       @search_word = "指定なし" 
     end
-    if @search_category.blank? 
-      @search_category = "指定なし" 
-    end 
-    
   end
   
   def category
-    @category = params[:category]
-    @articles = Article.where(category: @category).page(params[:page]).per(4)
+    @category = Category.find(params[:category_id])
+    @articles = @category.articles.page(params[:page]).per(4)
   end
   
   private
@@ -91,7 +106,7 @@ class ArticlesController < ApplicationController
   end
 
   def article_params
-    params.require(:article).permit(:title,:content,:category)
+    params.require(:article).permit(:title,:content,:category_id)
   end
   
   def correct_user

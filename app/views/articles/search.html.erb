@@ -1,7 +1,24 @@
+<!--<div class="text-center mt-1">-->
+<!--  <h1>検索結果</h1>-->
+<!--  <p>検索ワード：<%= @search_word %></p>-->
+<!--  <p>カテゴリー：<%=  @search_category %></p>-->
+<!--  <p><#%= @articles_count %>件</p>-->
+  
+  <!--<#% if @search_word == "指定なし" %>-->
+<!--  <#% @search_word = "" %>-->
+<!--  <#% end %>-->
+  
+<!--  <#%= render "search_form" %>-->
+  
+<!--</div>-->
 <div class="text-center mt-1">
   <h1>検索結果</h1>
   <p>検索ワード：<%= @search_word %></p>
-  <p>カテゴリー：<%=  @search_category %></p>
+  <% if @category.blank? %>
+  <p>カテゴリー：指定なし</p>
+  <% else %>
+  <p>カテゴリー：<%=  @category.name %></p>
+  <% end %>
   <p><%= @articles_count %>件</p>
   
   <% if @search_word == "指定なし" %>

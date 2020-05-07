@@ -26,8 +26,8 @@ Rails.application.routes.draw do
   resources :relationships, only: [:create, :destroy]
   resources :favorites, only: [:create, :destroy]
   
-  get '/articles/hashtag/:hashname', to: "articles#hashtag"
-  get "/articles/category/:category", to: "articles#category"
+  get '/articles/hashtag/:hashtag_id', to: "articles#hashtag"
+  get "/articles/category/:category_id", to: "articles#category"
   
   resources :hashtags, only: [:index]
 end

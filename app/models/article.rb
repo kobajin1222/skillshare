@@ -1,5 +1,6 @@
 class Article < ApplicationRecord
   belongs_to :user
+  belongs_to :category
   has_many :favorites, dependent: :destroy
   has_many :users, through: :favorites
   has_many :tagmanagements, dependent: :destroy
@@ -7,7 +8,6 @@ class Article < ApplicationRecord
   
   validates :title, presence: true, length: { maximum: 20 }
   validates :content, presence: true, length: { maximum: 2000 }
-  validates :category, presence: { message: 'を選択してください' }
 
   #記事(article)保存後に処理
   after_create do
